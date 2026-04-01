@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joseph George | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #0ea5e9;
+      --border: rgba(15, 23, 42, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(800px 400px at 10% -10%, rgba(37,99,235,0.08), transparent 60%),
+        radial-gradient(700px 400px at 90% 10%, rgba(14,165,233,0.08), transparent 60%),
+        linear-gradient(180deg, #f8fafc, #f1f5f9);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 2.75rem 1.25rem;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: linear-gradient(180deg,rgba(226, 230, 240, 0.9), rgba(209, 215, 228, 0.75));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+      color: #0a1a3d;
+      align-items: center;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-links .nav-contact {
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #3b82f6, #2563eb);
+      color: #ffffff;
+      font-weight: 500;
+      border: 1px solid rgba(37,99,235,0.8);
+      transform: translateY(-2px);
+    }
+
+    .nav-links .nav-contact::after {
+      display: none;
+    }
+
+    .nav-links .nav-contact:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+    }
+
+    header {
+      padding: 5rem 0 0.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #e2e6f0, #d1d7e4);
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+
+    .header-text {
+      margin-top: 3rem;
+    }
+
+    .hero-image {
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      width: 320px;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+      transform: translateY(3.29rem);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 0;
+      background: linear-gradient(90deg, #0f172a, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 740px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.3rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.35rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, #3b82f6, #2563eb);
+      color: white;
+      border-color: rgba(37,99,235,0.8);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37,99,235,0.2);
+    }
+
+    #about, #projects {
+      scroll-margin-top: 80px;
+    }
+
+    section h2 {
+      font-size: 1.85rem;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.02em;
+      position: relative;
+      display: inline-block;
+    }
+
+    section h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 45%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 999px;
+    }
+
+    .about {
+      max-width: 840px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      height: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(37,99,235,0.4);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+    }
+
+    /* NEW: Project image */
+    .project-image {
+      width: 100%;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-content {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      flex-grow: 1;
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .project-desc {
+      font-size: 0.97rem;
+      color: var(--muted);
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(37,99,235,0.18);
+    }
+
+    footer {
+      margin-top: 6.5rem;
+      padding: 2.75rem 0;
+      background: linear-gradient(180deg, #f1f5f9, #e2e8f0);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      h1 { font-size: 3.4rem; }
+      .header-grid { grid-template-columns: 1.3fr 0.7fr; align-items: center; }
+      .hero-image { display: flex; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-name">JG - Project Portfolio</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="Joseph's CV 2026.pdf" target="_blank">CV</a>
+        <a href="mailto:josephg16092@gmail.com" class="nav-contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container header-grid">
+      <div class="header-text">
+        <h1>Joseph George</h1>
+        <p class="subtitle">
+          Engineering Science student passionate about data-driven decision making and building elegant solutions to complex problems.
+        </p>
+        <div class="header-actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="Joseph's CV 2026.pdf" target="_blank">View CV</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/transparentprofile2.png" alt="Joseph George profile image" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="about">
+        I am an Engineering Science student with strong interests in data science, machine learning, logistics and operations optimisation, and quantitative problem-solving.
+        My work spans academic research, professional experience, and leadership roles, all with a focus of building skills for tomorrows challenges.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Selected Projects</h2>
+
+      <div class="projects-grid">
+
+        <a class="project-link">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/Woolworths2024Map.png" alt="Countdown Logistics Store Mapping">
+            </div>
+            <div class="project-content">
+              <div class="project-title">Countdown Logistics Optimisation</div>
+              <div class="project-desc">
+                A cost-efficient trucking logistics plan was required for transporting specific palletes of goods from distribution centres to Countdown stores across NZ. Using demand data, travel data and trucking constraints, stochastic modelling and linear programs were designed to meet the objective. A final solution costing approximately $136730 per week is proposed.
+              </div>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Linear Programming</span>
+                <span class="tag">Data Modelling</span>
+                <span class="tag">Strategy</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-link">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/AirfoilModelling.png" alt="Airfoil Modelling Stages">
+            </div>
+            <div class="project-content">
+              <div class="project-title">Airfoil Performance Modelling</div>
+              <div class="project-desc">
+                A small commercial aircraft similar to a Cessna 172 was analysed and optimised for flight reliability using Ansys. Wing spar dimensions and airfoil configurations were iteratively modified and evaluated for structural, aerodynamic, and thermal performance. The optimal design features a 120 mm × 140 mm spar, 4 mm skin thickness, five ribs, and a 5° angle of attack. However, the proposed anti-icing strategy was unsuccessful and requires further investigation.
+              </div>
+              <div class="project-tags">
+                <span class="tag">Computational Modelling</span>
+                <span class="tag">Ansys Software</span>
+                <span class="tag">Parameter Optimisation</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-link">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/geothermal2.png" alt="Geothermal Reservoir System Diagram">
+            </div>
+            <div class="project-content">
+              <div class="project-title">Geothermal Reservoir Optimisation</div>
+              <div class="project-desc">
+                This project requires recommending a safe injection rate for a local goethermal reservoir that balances economic benefits with environmental, cultural, and stakeholder concerns while keeping seismic activity below regulatory limits. This involved developing a mathematical ODE model of the relationship between geothermal water injection rates, reservoir pressure, and induced seismicity using time-series data of the pressure and injection rate as well as academic research. The result is a recommended 175.5 tonne/hour injection rate.
+              </div>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Mathematical Modelling</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+                <a class="project-link">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/simplex.png" alt="Simplex Code Snippet">
+            </div>
+            <div class="project-content">
+              <div class="project-title">Simplex Algorithm from scratch</div>
+              <div class="project-desc">
+                The Revised Simplex Method (RSM) is built from scratch able to efficiently solve Linear Programming problems. The RSM solver was constructed using MATLAB R2024b, successfully maximising or minimising a linear objective functions subject to linear equality and inequality constraints. This can be applied to resource allocation, production planning, transportation and logisitcs, network flows and financial and economic optimisation.
+              </div>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Linear Programming</span>
+                <span class="tag">Data Modelling</span>
+                <span class="tag">Strategy</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-link">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/coming_soon2.png" alt="Coming Soon">
+            </div>
+            <div class="project-content">
+              <div class="project-title">Stock Predictor Model - Coming Soon!</div>
+              <div class="project-desc">
+              </div>
+              <div class="project-tags">
+                <span class="tag">Finance</span>
+                <span class="tag">Python</span>
+                <span class="tag">LSTM Model</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-link">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/coming_soon2.png" alt="Coming Soon">
+            </div>
+            <div class="project-content">
+              <div class="project-title">Parkinson's Detection Model - Coming Soon!</div>
+              <div class="project-desc">
+              </div>
+              <div class="project-tags">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Python</span>
+                <span class="tag">Data Analysis</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Joseph George · Designed & built with HTML & CSS
+  </footer>
+
+</body>
+</html>
